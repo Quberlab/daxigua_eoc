@@ -270,3 +270,18 @@ h4{
 .btn_ok:active{
     transform: scale(.7);
 }
+.btn_setting{
+    position: absolute;
+    right: .5rem;
+    top: 1.5rem;
+    z-index: 50;
+    width: .65rem;
+    transition: .1s ease;
+}
+.btn_setting img{
+    width: 100%;
+    
+}
+.btn_setting:active{
+    transform: scale(.7);
+}

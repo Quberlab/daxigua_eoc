@@ -1924,6 +1924,7 @@ window.__require = function e(t, n, o) {
                     if (b.default.Instance.targetFruit.name === '') return;
                     b.default.Instance.targetFruit.destroy()
                     b.default.Instance.createOneFruit(Math.floor(Math.random() * 6))
+                    showSound("./res/audio/select_audio.mp3");
                 }, t.prototype.TestPasslevel = function () {
                     var e = this;
                     this.lerpCtrl = !0, this.nowYQ >= this.passlevelYQ && (this.levelPanel.children[2].runAction(cc.sequence(cc.delayTime(1.3), cc.callFunc(function () {

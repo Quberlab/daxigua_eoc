@@ -125,6 +125,7 @@
 
         </div>
     </div>
+    <div class="btn_setting"><img src="./res/icon_setting.svg" alt=""></div>
     <div style="align:center;display: none"><img src="res/share.jpg" width="10%" /></div>
 
     <div id="canvasDiv" style="width:100%;height:100%;">
@@ -152,21 +153,7 @@
         <img src="res/loading.gif" width="7%" height="7%" />
     </div>
 
-    <!-- 判断浏览器是否屏蔽广告 -->
-    <!-- <script src="http://demo.jb51.net/js/2015/adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js" type="text/javascript"></script> -->
-    <!--    <script type="text/javascript">
-        var killAdT = typeof(killads);
-        <!-- if (typeof(killads)=='undefined'){ -->
-    <!-- alert('广告被过滤'); -->
-    <!-- } -->
-    <!-- </script>  -->
-    -->
 
-
-
-    <!--<div align="center" style="font-size: 10px;color: dimgrey">advertisement</div>-->
-
-    <!-- <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script> -->
     <script type="text/javascript" src="ads.js"></script>
 
     <script src="src/settings.js" charset="utf-8"></script>
@@ -183,12 +170,15 @@
 
         judgeLanTitle();
         $('.msg_box').addClass('animation_box');
-        let flag = false;
+        
         $('#close_msg_box').click(function () {
+            let flag = false;
             if (flag) {
                 
                 $('.box').css('display', 'flex');
                 $('.msg_box').addClass('animation_box');
+                
+
             } else {
                 $('.msg_box').removeClass('animation_box');
                 $('.msg_box').addClass('close_animation_box');
@@ -199,10 +189,18 @@
             flag = !flag;
         })
 
+        
+        $('.btn_setting').click(function () {
+            $('.msg_box').removeClass('close_animation_box');
+                $('.box').removeClass('animation_box_bg');
+
+                $('.box').css('display', 'flex');
+               
+                $('.msg_box').addClass('animation_box');
+                
+        })
+
         function judgeLanTitle() {
-
-            //        console.log("window.navigator.language",window.navigator.language);
-
             if (window.navigator.language == "zh-CN" || window.navigator.language == "zh-cn") {
                 document.title = "小游戏：合成小猫咪";
             } else if (window.navigator.language == "zh-TW") {
@@ -222,6 +220,13 @@
 
         }
 
+        function showSound(audioSrc) {
+            $("#hint").remove();/**因为音效元素是追加的，所以每次生成之前，将原来的删除掉*/
+            var audioJQ = $("<audio src='" + audioSrc + "' autoplay id='hint'/>");
+            audioJQ.appendTo("body");/**创建 audio 标签的 Jquery 对象，然后追加到 body 进行播放*/
+        }
+        $('.btn_ok').click(function(){showSound("./res/audio/start_audio.mp3");})
+
         if (true) {
             window.difficulty = [0, 5];
             multiplescore = 1;
@@ -231,6 +236,8 @@
                 $(ele).css('background-color', '#75C046');
                 $(ele).css('color', 'black');
                 window.difficulty = diff;
+                showSound("./res/audio/select_audio.mp3");
+
             }
 
             function multipleScore(ele, diff) {
@@ -238,45 +245,12 @@
                 $(ele).css('background-color', '#75C046');
                 $(ele).css('color', 'black');
                 multiplescore = diff;
+                showSound("./res/audio/select_audio.mp3");
+
             }
 
         }
 
-        // layer.open({
-        //   type: 1
-        //   , title: false //不显示标题栏
-        //   , closeBtn: false
-        //   , area: '300px;'
-        //   , shade: 0.8
-        //   , id: 'layer2' //设定一个id，防止重复弹出
-        //   , resize: false
-        //   , btn: ['开始游戏']
-        //   , btnAlign: 'c'
-        //   , shadeClose: true //开启遮罩关闭
-        //   , moveType: 1 //拖拽模式，0或者1
-        //   , content:
-        //      '<div style="padding: 10px;text-align:center; line-height: 5px; background-color: #393D49; color: #fff;"><h4>模式选择</h4>'
-        //     + '<button name="difficulty" onclick="changeDifficulty(this,[0,10])">随缘Play</button><br>'
-        //     + '<button name="difficulty" onclick="changeDifficulty(this,[0,0])">圣雄肝帝</button><br>'
-        //     + '<button name="difficulty" style="background-color:#1E9FFF" onclick="changeDifficulty(this,[0,5])">原汁原味</button><br>'
-        //     + '<button name="difficulty" onclick="changeDifficulty(this,[5,5])">作弊模式</button><br>'
-        //     + '<button name="difficulty" onclick="changeDifficulty(this,[2,7])">去除小瓜</button><br>'
-        //     + '<button name="difficulty" onclick="changeDifficulty(this,[9,9])">暴力吃瓜</button><br>'  
-        //     + '</div>'
-        //     + '<div style="padding: 10px;text-align:center; line-height: 5px; background-color: #393D49; color: #fff;"><h4>分数选择</h4>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,2)">两倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,5)">五倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,10)">十倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,100)">百倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,1000)">千倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,10000)">万倍暴击</button><br>'
-        //     + '<button name="fanbei" onclick="multipleScore(this,100000)">十万伏特</button><br>'
-        //     + '</div>',
-
-
-        //   success: function (layero) {
-        //   }
-        // });
 
         var loadintT = document.getElementById("loadingText");
         var loadintGif = document.getElementById("loadingImg")
@@ -371,33 +345,8 @@
     <script src="main.js" charset="utf-8"></script>
 
 
-    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-    <!-- 暴力扣篮 -->
-    <!-- <ins class="adsbygoogle"
-      style="position:absolute;border-top:5px #f0f0f1 solid;background:#f0f0f1;bottom:0px;z-index:1000;display:inline-block;min-width:320px;max-width:970px;width:100%;height:60px"
-     data-ad-client="ca-pub-3932234672445376"
-     data-ad-slot="7048809290"
-     ></ins>
-<script>
-	 var ads = document.getElementsByClassName('adsbygoogle')[0]; 
 
-	 if (document.body.clientHeight > 700){  
-	 	ads.style.height = 80+'px'; 
-	 }else{     
-	 	ads.style.height = 60+'px';    
-	 }
-    
-</script>
 
-<script>
-	function ShowBannerAD(){
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	}
-	
-</script> -->
-
-    <!-- <script async data-ad-client="ca-pub-3932234672445376" data-ad-channel="7171445254" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"> -->
-    </script>
 
     <script>
         window.adsbygoogle = window.adsbygoogle || [];
