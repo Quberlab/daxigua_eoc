@@ -73,8 +73,8 @@
 </head>
 
 <body style="margin: 0; background: #ddd;" align="center">
-    <div class="box">
-        <div class="msg_box">
+    <div class="box " style="display: none;">
+        <div class="msg_box ">
             <img src="./res/msg_bj.png" alt="">
             <div class="moshi_change">
                 <h4>模式选择</h4>
@@ -178,13 +178,14 @@
                 $('.box').css('display', 'flex');
                 $('.msg_box').addClass('animation_box');
                 
+                
 
             } else {
                 $('.msg_box').removeClass('animation_box');
                 $('.msg_box').addClass('close_animation_box');
                 $('.box').addClass('animation_box_bg');
                 setTimeout(function(){$('.box').css('display', 'none');},500);
-
+                
             }
             flag = !flag;
         })
@@ -309,19 +310,25 @@
                         updateLabView(50);
                         break;
                     case 99:
+                        
                         updateLabView(100);
+                        
                         break;
                     default:
                         if (tempSeconds >= 80 && tempSeconds < 96) {
                             updateLabView(t + 0.1);
+                            
                         }
                         break;
                 }
                 if (tempSeconds > 100) {
                     clearInterval(timer);
                     tempSeconds = 100
+                    console.log("12");
                     loadintT.innerHTML = 'loading......' + parseInt(tempSeconds) + '%';
+                   
                 }
+                
             }, t * 1000);
         }
 

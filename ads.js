@@ -54,6 +54,7 @@ function onAdError(adErrorEvent) {
                     }
                     cc.loader.onProgress = null;
                     console.log('Success to load scene: ' + launchScene);
+
                 }
 
             );
@@ -215,7 +216,9 @@ function onContentResumeRequested() {
                         }
                     }
                     cc.loader.onProgress = null;
+                    
                     console.log('Success to load scene1: ' + launchScene);
+                    
 
 
 
@@ -278,9 +281,10 @@ function noAdGoToScene() {
             }
             cc.loader.onProgress = null;
             console.log('Success to load scene1Main: ' + launchScene);
+            $('.btn_setting').css('display', 'block');
+            
 
-
-
+            $('.box').css('display', 'flex');
 
 
         }
